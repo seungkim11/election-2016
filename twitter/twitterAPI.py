@@ -4,6 +4,7 @@ from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
 import time
 from pymongo import MongoClient
+from requests.packages.urllib3.exceptions import ProtocolError
 
 with open('auth.json') as auth_file:
     auth_data = json.load(auth_file)
@@ -21,15 +22,26 @@ dbfile = open('data.json', 'w')
 dbfile.write('[\n')
 dbfile.close()
 
-class listener(StreamListener):
-    def on_data(self, data):
+
+class listener(StreamListener, api=None):
+    def __init__(self):
+        super(listener, self).__init__()
+        self.switch = True
+
+    def on_status(self, data):
         try:
-            tweet = json.loads(data)
-            # with open('data.json', 'a') as outfile:
-            #     json.dump(tweet, outfile, sort_keys=True, indent=4)
-            #     outfile.write(',\n')
-            tweets_test.insert_one(tweet)
-            return True
+            if (self.switch == True):
+                self.switch = False
+                tweet = json.loads(data)
+                with open('data.json', 'a') as outfile:
+                     json.dump(tweet, outfile, sort_keys=True, indent=4)
+                     outfile.write(',\n')
+                tweets_test.insert_one(tweet)
+                print tweet
+
+                return True
+            else:
+                self.switch = True
 
         except BaseException, e:
             print 'failed ondata, ' , str(e)
@@ -41,6 +53,13 @@ class listener(StreamListener):
 auth = OAuthHandler(ckey, csecret)
 auth.set_access_token(atoken, asecret)
 
-twitterStream = Stream(auth, listener())
-twitterStream.filter(track=['2016 election', 'bernie sanders', 'hilary clinton', 'trump', 'ted cruz', 'democratic party', 'republican party'])
-
+while True:
+    try:
+        twitterStream = Stream(auth, listener())
+        twitterStream.filter(track=['2016 election', 'bernie sanders', 'hilary clinton', 'trump', 'ted cruz', 'democratic party', 'republican party'])
+    except ProtocolError:
+        time.sleep(5)
+        continue
+    except KeyboardInterrupt:
+        twitterStream.disconnect()
+        break
