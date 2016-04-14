@@ -2,7 +2,7 @@ import json
 from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
-import time
+from time import gmtime, strftime
 from pymongo import MongoClient
 from requests.packages.urllib3.exceptions import ProtocolError
 
@@ -27,18 +27,20 @@ class StdOutListener(StreamListener):
         if (self.switcher % 4  == 0):
 
             tweet = json.loads(data)
-            print(tweet['id_str'])
+            print('put  ', self.switcher, ' ', tweet['id'], ' ', strftime("%Y-%m-%d %H:%M:%S", gmtime()))
             tweets_test.insert_one(tweet)
             self.switcher += 1
             return True
 
         else:
             self.switcher += 1
-            print('count ', self.switcher)
             return True
 
     def on_error(self, status):
         print(status)
+
+    def on_disconnect(self, notice):
+        print('disconnected at ' , strftime("%Y-%m-%d %H:%M:%S", gmtime()))
 
 if __name__ == '__main__':
     l = StdOutListener()
