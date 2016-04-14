@@ -24,17 +24,17 @@ class StdOutListener(StreamListener):
         self.switcher = 1
 
     def on_data(self, data):
-        if (self.switcher == 1):
+        if (self.switcher % 3  == 1):
 
             tweet = json.loads(data)
             print(tweet['id_str'])
             tweets_test.insert_one(tweet)
-            self.switcher = 0
+            self.switcher += 1
             return True
 
         else:
-            self.switcher = 1
-            print('rest')
+            self.switcher += 1
+            print('count ', self.switcher)
             return True
 
     def on_error(self, status):
