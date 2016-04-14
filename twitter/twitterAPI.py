@@ -40,7 +40,7 @@ class StdOutListener(StreamListener):
         print(status)
 
     def on_disconnect(self, notice):
-        print('disconnected at ' , strftime("%Y-%m-%d %H:%M:%S", gmtime()))
+        print('disconecct ', notice, ' at ', strftime("%Y-%m-%d %H:%M:%S", gmtime()))
 
 if __name__ == '__main__':
     l = StdOutListener()
