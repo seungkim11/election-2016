@@ -21,10 +21,10 @@ tweets_test = db['tweets_test']
 class StdOutListener(StreamListener):
 
     def __init__(self):
-        self.switcher = 1
+        self.switcher = 0
 
     def on_data(self, data):
-        if (self.switcher % 3  == 1):
+        if (self.switcher % 4  == 0):
 
             tweet = json.loads(data)
             print(tweet['id_str'])
