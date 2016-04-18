@@ -2,6 +2,12 @@
 twitter/auth.json
 twitter/tweetDB.json
 
+#npm modules
+data_acquisition/node_modules/
+
+#output data
+data_acquisition/out/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
