@@ -29,7 +29,7 @@ class StdOutListener(StreamListener):
             timestamp = int(tweet['timestamp_ms'])
 
             date = datetime.fromtimestamp(timestamp / 1000)
-            collectionName = str(date.month) + '_' + str(date.day)
+            collectionName = 't' + str(date.month) + '_' + str(date.day)
 
             print('put  ', self.switcher, ' ', tweet['id'], ' at ', date)
 

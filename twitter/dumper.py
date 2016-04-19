@@ -12,12 +12,16 @@ db = client['election-2016']
 secondsToSleep = 3600
 
 def dumpData(yesterdayStr):
-    cursor = db[yesterdayStr].find()
+    collectionName = 't' + yesterdayStr
+
+    cursor = db[collectionName].find()
     count = cursor.count()
+    print(collectionName + ' found ' + count + ' tweets')
+
 
     # dump only if data count is greater than 0
     if count > 0:
-        file = open(yesterdayStr + '.json', 'w')
+        file = open('out/' + yesterdayStr + '.json', 'w')
         file.write('[')
 
         i = 0
@@ -30,6 +34,7 @@ def dumpData(yesterdayStr):
                 file.write('\n]')
             i = i + 1
 
+        print('data for ' + yesterdayStr + ' successfully dumped at ' + str(now))
 
 # Run following code when the program starts
 if __name__ == '__main__':
@@ -44,16 +49,14 @@ if __name__ == '__main__':
         nowStr = str(now.month) + '_' + str(now.day)
         yesterdayStr = str(yesterday.month) + '_' + str(yesterday.day)
 
-        print(currentDate)
-        print(yesterdayStr)
-
+        print('today: ' + currentDate + " at "+ str(now.hour)  + ' o\'clock; yesterday: ' + yesterdayStr)
 
         #if today is passed, dump the past day
         if (yesterdayStr == currentDate):
             #update currentDate
             currentDate = nowStr
             dumpData(yesterdayStr)
-            print('data for ' + yesterdayStr + ' dumped at ' + str(now))
+
 
         #sleep
         time.sleep(secondsToSleep)
