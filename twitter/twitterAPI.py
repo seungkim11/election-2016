@@ -23,7 +23,7 @@ class StdOutListener(StreamListener):
         self.switcher = 0
 
     def on_data(self, data):
-        if (self.switcher % 500  == 0):
+        if (self.switcher % 200  == 0):
 
             tweet = json.loads(data)
             timestamp = int(tweet['timestamp_ms'])
@@ -46,7 +46,7 @@ class StdOutListener(StreamListener):
         print(status)
 
     def on_disconnect(self, notice):
-        print('disconecct ', notice, ' at ', datetime.now())
+        print('disconnect ', notice, ' at ', datetime.now())
 
 
 if __name__ == '__main__':
