@@ -16,7 +16,7 @@ def dumpData(yesterdayStr):
 
     cursor = db[collectionName].find()
     count = cursor.count()
-    print(collectionName + ' found ' + count + ' tweets')
+    print(collectionName + ' found ' + str(count) + ' tweets')
 
 
     # dump only if data count is greater than 0

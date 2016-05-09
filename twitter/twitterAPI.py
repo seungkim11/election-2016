@@ -26,12 +26,12 @@ class StdOutListener(StreamListener):
         if (self.switcher % 200  == 0):
 
             tweet = json.loads(data)
-            timestamp = int(tweet['timestamp_ms'])
 
-            date = datetime.fromtimestamp(timestamp / 1000)
-            collectionName = 't' + str(date.month) + '_' + str(date.day)
+	    now = datetime.now()
 
-            print('put  ', self.switcher, ' ', tweet['id'], ' at ', date)
+            collectionName = 't' + str(now.month) + '_' + str(now.day)
+
+            print('put  ', self.switcher, ' at ', now)
 
             db[collectionName].insert_one(tweet)
 
@@ -55,5 +55,5 @@ if __name__ == '__main__':
     auth.set_access_token(atoken, asecret)
 
     stream = Stream(auth, l)
-    stream.filter(track=['2016 election', 'bernie sanders', 'hilary clinton', 'trump', 'ted cruz',
+    stream.filter(track=['2016 election', 'sanders', 'clinton', 'trump', 'cruz',
                          'democratic party','republican party'])
