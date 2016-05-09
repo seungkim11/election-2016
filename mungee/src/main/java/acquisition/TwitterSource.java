@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import acquisition.TwitterCollector;
 import auth.TwitterAuth;
 import model.Tweet;
 import model.User;

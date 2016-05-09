@@ -1,3 +1,5 @@
+package acquisition;
+
 import com.google.common.collect.Lists;
 
 import org.json.simple.JSONArray;
