@@ -1,15 +1,19 @@
 #authentication data
 twitter/auth.json
 twitter/tweetDB.json
-twitter/out2
 *.env
 
-#java outputs
+#data
+twitter/out
+
+#console outputs
+twitter/nohup.out
+
+#java stuff
 mungee/build
 mungee/data
 mungee/gradle
 mungee/.idea
-mungee/.gradle
 
 
 #npm modules
