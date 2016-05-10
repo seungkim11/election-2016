@@ -44,18 +44,23 @@ public class TwitterSource {
     long count;
     int skip;
 
-    public TwitterSource(String skip) {
+    public TwitterSource() {
         auth = new TwitterAuth();
         tf = auth.getStreamFactory();
         collector = new TwitterCollector();
         mongoClient = new MongoClient();
         db = mongoClient.getDatabase("election-2016");
         count = 0;
-        if (skip == null || skip.isEmpty()){
-            this.skip = 10;
-        }else{
-            this.skip = Integer.parseInt(skip);
-        }
+        // by default skip 10
+        skip = 10;
+    }
+
+    public void setSkip(String skip){
+        this.skip = Integer.parseInt(skip);
+    }
+
+    public int getSkip(){
+        return skip;
     }
 
     public void listen(String[] track, boolean save){

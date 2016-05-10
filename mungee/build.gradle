@@ -24,4 +24,9 @@ dependencies {
 task twitter(type: JavaExec){
     classpath = sourceSets.main.runtimeClasspath
     main = 'TwitterDriver'
+    if (project.hasProperty("arguments")){
+        args Eval.me(arguments)
+    }
+    //  if need to put parameters for count
+    //  gradle twitter -Parguments="[5]"
 }
