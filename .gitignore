@@ -1,13 +1,12 @@
 #authentication data
-twitter/auth.json
-twitter/tweetDB.json
+python_streaming/auth.json
 *.env
 
 #data
-twitter/out
+python_streaming/out
 
 #console outputs
-twitter/nohup.out
+python_streaming/nohup.out
 
 #java stuff
 .idea/
