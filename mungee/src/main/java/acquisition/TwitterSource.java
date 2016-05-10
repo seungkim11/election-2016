@@ -42,14 +42,20 @@ public class TwitterSource {
     MongoDatabase db;
     MongoCollection collection;
     long count;
+    int skip;
 
-    public TwitterSource() {
+    public TwitterSource(String skip) {
         auth = new TwitterAuth();
         tf = auth.getStreamFactory();
         collector = new TwitterCollector();
         mongoClient = new MongoClient();
         db = mongoClient.getDatabase("election-2016");
         count = 0;
+        if (skip == null || skip.isEmpty()){
+            this.skip = 10;
+        }else{
+            this.skip = Integer.parseInt(skip);
+        }
     }
 
     public void listen(String[] track, boolean save){
@@ -57,7 +63,7 @@ public class TwitterSource {
         StatusListener listener = new StatusListener() {
             @Override
             public void onStatus(Status status) {
-                if (count % 10 == 0){
+                if (count % skip == 0){
                     Document tweet = collector.parseTweet(status);
                     if (save)  save(tweet);
                     else  System.out.println(tweet);
@@ -112,7 +118,7 @@ public class TwitterSource {
     private void save(Document tweet) {
         collection = db.getCollection(getCollectionName());
         collection.insertOne(tweet);
-        System.out.println("Saved "  + tweet.get("id_str") + " at " + Calendar.getInstance().getTime());
+        System.out.println("Count: " + count + "Saved "  + tweet.get("id_str") + " at " + Calendar.getInstance().getTime());
     }
 
     private String getCollectionName(){

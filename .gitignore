@@ -10,6 +10,7 @@ twitter/out
 twitter/nohup.out
 
 #java stuff
+.idea/
 mungee/build
 mungee/data
 mungee/gradle

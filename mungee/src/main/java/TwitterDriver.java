@@ -9,7 +9,7 @@ public class TwitterDriver {
 
 
         TwitterSource source = new TwitterSource();
-        String[] track = {"Bernie Sanders", "Hilary Clinton", "Donald Trump", "Ted Cruz"};
+        String[] track = {"2016 election", "Bernie Sanders", "Hilary Clinton", "Donald Trump", "Ted Cruz"};
         source.listen(track, true);
 
     }

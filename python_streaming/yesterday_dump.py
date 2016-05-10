@@ -45,6 +45,7 @@ if __name__ == '__main__':
     now = datetime.now()
     yesterday = now - timedelta(days=1)
 
+
     yesterdayStr = str(yesterday.month) + '_' + str(yesterday.day)
 
     #update currentDate
