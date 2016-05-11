@@ -2,7 +2,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import acquisition.TweetSource;
+import acquisition.Aggregate;
 import model.Tweet;
 
 /**
@@ -154,7 +154,7 @@ public class practice {
                 "   }\n" +
                 "}";
 
-        TweetSource source = new TweetSource();
+        Aggregate source = new Aggregate();
 
         JSONParser parser = new JSONParser();
 

@@ -3,7 +3,7 @@ import acquisition.TwitterSource;
 /**
  * Created by samskim on 5/8/16.
  */
-public class TwitterDriver {
+public class TwitterAPIDriver {
 
     public static void main(String[] args){
 

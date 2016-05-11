@@ -24,57 +24,21 @@ import model.User;
 /**
  * Created by samskim on 5/3/16.
  */
-public class TweetSource {
+public class Aggregate {
 
     private String dataFolderName;
     private Map<String, Tweet> map;
 
     public static void main(String[] args) {
-        TweetSource source = new TweetSource();
-        source.readFiles("data");
-        Map<String, Tweet> m = source.getMap();
 
-        try {
-            System.out.println("writing to csv file");
-            FileWriter fw = new FileWriter("output.csv");
-            fw.append("id");
-            fw.append(',');
-            fw.append("retweet_count");
-            fw.append(',');
-            fw.append("favorite_count");
-            fw.append(',');
-            fw.append("retweets_captured");
-            fw.append('\n');
-
-            for (String s: m.keySet()){
-
-                Tweet t = m.get(s);
-
-                int retweet_count = t.getRetweet_count();
-                int favorite_count = t.getFavorite_count();
-                String id = t.getId();
-
-
-                fw.append(id);
-                fw.append(',');
-                fw.append(new Integer(retweet_count).toString());
-                fw.append(',');
-                fw.append(new Integer(favorite_count).toString());
-                fw.append(',');
-                fw.append(new Integer(t.getRetweets().size()).toString());
-                fw.append('\n');
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
-    public TweetSource() {
+    public Aggregate() {
         this.map = new HashMap<>();
     }
 
-    public TweetSource(String dataFolderName, String outputFileName) throws IOException {
+    public Aggregate(String dataFolderName, String outputFileName) throws IOException {
         this.dataFolderName = dataFolderName;
         this.map = new HashMap<>();
     }
@@ -186,7 +150,7 @@ public class TweetSource {
         return u;
     }
 
-    private Map<String, Tweet> getMap(){
+    public Map<String, Tweet> getMap(){
         return this.map;
     }
 

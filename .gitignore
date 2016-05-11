@@ -4,6 +4,9 @@ python_streaming/auth.json
 
 #data
 python_streaming/out
+mungee/testdata
+mungee/data
+mungee/output*
 
 #console outputs
 python_streaming/nohup.out
@@ -11,10 +14,10 @@ python_streaming/nohup.out
 #java stuff
 .idea/
 mungee/build
-mungee/data
 mungee/gradle
 mungee/.idea
 mungee/.gradle
+
 
 #npm modules
 data_acquisition/node_modules/
