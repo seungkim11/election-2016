@@ -7,6 +7,7 @@ python_streaming/out
 mungee/testdata
 mungee/data
 mungee/output*
+mungee/csv
 
 #console outputs
 python_streaming/nohup.out
