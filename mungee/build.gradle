@@ -23,7 +23,7 @@ dependencies {
 
 task twitter(type: JavaExec){
     classpath = sourceSets.main.runtimeClasspath
-    main = 'TwitterDriver'
+    main = 'TwitterAPIDriver'
     if (project.hasProperty("arguments")){
         args Eval.me(arguments)
     }
