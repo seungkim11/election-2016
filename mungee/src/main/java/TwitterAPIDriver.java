@@ -13,7 +13,8 @@ public class TwitterAPIDriver {
             source.setSkip(args[0]);
         }
 
-        String[] track = {"2016 election", "Bernie Sanders", "Hilary Clinton", "Donald Trump", "Ted Cruz"};
+        String[] track = {"2016 election", "Bernie Sanders", "Hilary Clinton",
+                "Donald Trump", "Democrats", "Republicans"};
         source.listen(track, true);
 
     }

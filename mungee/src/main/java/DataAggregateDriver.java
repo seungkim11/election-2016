@@ -103,7 +103,7 @@ public class DataAggregateDriver {
                 fw.append(',');
                 fw.write(date.toString());
                 fw.append(',');
-                fw.write("\"" + text +"\"");
+                fw.write(text);
                 fw.append(',');
                 fw.write(retweet_count);
                 fw.append(',');
