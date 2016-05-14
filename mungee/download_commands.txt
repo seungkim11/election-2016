@@ -1,0 +1,1 @@
+scp -i ~/.ssh/my-ssh-key seungkim11@146.148.61.27:~/election-2016/python_streaming/out/5_11.json ./

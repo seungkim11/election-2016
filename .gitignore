@@ -6,8 +6,10 @@ python_streaming/auth.json
 python_streaming/out
 mungee/testdata
 mungee/data
+mungee/old_data
 mungee/output*
 mungee/csv
+
 
 #console outputs
 python_streaming/nohup.out
